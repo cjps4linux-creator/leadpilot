@@ -1,0 +1,18 @@
+services:
+  leadpilot:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MOCK_MODE=true
+      - SALESFORCE_INSTANCE_URL=
+      - SALESFORCE_CLIENT_ID=
+      - SALESFORCE_CLIENT_SECRET=
+      - SALESFORCE_USERNAME=
+      - SALESFORCE_PASSWORD=
+      - SALESFORCE_SECURITY_TOKEN=
+    volumes:
+      - ./backend/data:/app/backend/data
+    restart: unless-stopped
