@@ -1,4 +1,4 @@
-"""leadpilot: AI lead discovery -> enrichment -> scoring -> Salesforce sync.
+# leadpilot: AI lead discovery → enrichment → scoring → Salesforce sync
 
 Built as a demonstration of the exact workflow The Future Perfect described:
 discovery through Salesforce sync, with qualification, scoring, dedup, idempotent
@@ -31,4 +31,5 @@ curl http://localhost:8000/metrics
 - GET /runs — run history
 - GET /metrics — counts + salesforce call count
 - POST /reset — clear state
-"""
+
+Swap in real adapters (discovery API, Clearbit enrichment, Salesforce `simple-salesforce`) by flipping env + implementing the adapter functions — the orchestration, scoring, dedup, and sync contracts stay.
