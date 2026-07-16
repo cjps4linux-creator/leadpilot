@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r backend/requirements.txt pytest
-      - run: python -m pytest tests -q
+      - run: cd backend && python -m pytest tests -q
 
   docs-check:
     runs-on: ubuntu-latest
