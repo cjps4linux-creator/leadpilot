@@ -8,7 +8,7 @@ os.environ["MOCK_MODE"] = "true"
 # isolate DB so tests don't collide with any real data
 os.environ["DB_PATH"] = os.path.join(os.path.dirname(__file__), "test_leadpilot.db")
 
-from app import store, metrics, salesforce
+from app import store, salesforce
 from app.metrics import metrics as metrics_mod
 from app.models import Lead
 from app.enrichment import enrich
@@ -24,12 +24,12 @@ def setup_module(_):
 
 def test_scoring_qualifies_senior():
     store.reset()
-    l = Lead(name="Jane Doe", company="acme corp", title="CTO", email="jane@acme.com")
-    l = enrich(l)
-    l = score_lead(l)
-    assert l.score > 0
-    assert l.qualified is True
-    print(f"PASS scoring senior (score={l.score}, qualified={l.qualified})")
+    lead = Lead(name="Jane Doe", company="acme corp", title="CTO", email="jane@acme.com")
+    lead = enrich(lead)
+    lead = score_lead(lead)
+    assert lead.score > 0
+    assert lead.qualified is True
+    print(f"PASS scoring senior (score={lead.score}, qualified={lead.qualified})")
 
 
 def test_dedup_entity_resolution():
@@ -46,10 +46,11 @@ def test_dedup_entity_resolution():
 
 def test_salesforce_idempotent_upsert():
     store.reset()
-    l = Lead(name="Carlos Ruiz", company="studio norte", email="carlos@studionorte.io")
-    l = enrich(l); l = score_lead(l)
-    l1 = sync_lead(l)
-    l2 = sync_lead(l)  # re-sync same lead
+    lead = Lead(name="Carlos Ruiz", company="studio norte", email="carlos@studionorte.io")
+    lead = enrich(lead)
+    lead = score_lead(lead)
+    l1 = sync_lead(lead)
+    l2 = sync_lead(lead)  # re-sync same lead
     assert l1.sf_id == l2.sf_id, "salesforce id changed on re-sync"
     assert l2.last_sync_status == "updated"
     # idempotent: only ONE salesforce create/update call path per external id
