@@ -1,2 +1,2 @@
-[lint.isort]
-known-first-party = ["app"]
+[lint]
+ignore = ["I001"]
