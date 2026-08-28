@@ -1,24 +1,24 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+# Removed Optional in favor of X | None
 
 
 class Lead(BaseModel):
     """Normalized lead entity. Stable identity = (email or normalized company+name)."""
-    id: Optional[int] = None
-    email: Optional[str] = None
+    id: int | None = None
+    email: str | None = None
     name: str
     company: str
-    title: Optional[str] = None
+    title: str | None = None
     source: str = "unknown"
     # enrichment
-    industry: Optional[str] = None
-    company_size: Optional[str] = None
+    industry: str | None = None
+    company_size: str | None = None
     # scoring
     score: float = 0.0
     qualified: bool = False
     # sync
-    sf_id: Optional[str] = None
-    last_sync_status: Optional[str] = None
+    sf_id: str | None = None
+    last_sync_status: str | None = None
     # provenance
     raw: dict = Field(default_factory=dict)
 
