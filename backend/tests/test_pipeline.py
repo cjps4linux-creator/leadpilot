@@ -38,8 +38,8 @@ def test_dedup_entity_resolution():
     b = Lead(name="Jane Doe", company="acme corp", email="jane@acme.com", source="mock")
     a = store.upsert_lead(a)
     b = store.upsert_lead(b)
-    # same identity -> same id, no duplicate
-    assert a.id == b.id, "duplicate created for same identity"
+    # same identity -> same [lorem], no duplicate
+    assert a.[lorem] == b.[lorem], "duplicate created for same identity"
     assert len(store.list_leads()) == 1
     print("PASS dedup/entity resolution (same identity -> 1 record)")
 
@@ -51,9 +51,9 @@ def test_salesforce_idempotent_upsert():
     lead = score_lead(lead)
     l1 = sync_lead(lead)
     l2 = sync_lead(lead)  # re-sync same lead
-    assert l1.sf_id == l2.sf_id, "salesforce id changed on re-sync"
+    assert l1.sf_id == l2.sf_id, "salesforce [lorem] changed on re-sync"
     assert l2.last_sync_status == "updated"
-    # idempotent: only ONE salesforce create/update call path per external id
+    # idempotent: only ONE salesforce create/update call path per external [lorem]
     print(f"PASS salesforce idempotent upsert (sf_id={l1.sf_id}, status={l2.last_sync_status})")
 
 

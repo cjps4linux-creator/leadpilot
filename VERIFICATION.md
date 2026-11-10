@@ -1,4 +1,4 @@
-# leadpilot — Verification Record
+# leadpilot  -  Verification Record
 
 **Date:** 2026-08-27
 **Verifier:** Conrad CJ Wilson
@@ -10,7 +10,7 @@
 
 | Check | Result | Evidence |
 |---|---|---|
-| README present and non-empty | PASS | Comprehensive README with architecture, pipeline stages, ADRs, honest limitations |
+| README present and [lorem]-empty | PASS | Comprehensive README with architecture, pipeline stages, ADRs, honest limitations |
 | LICENSE present | PASS | MIT license in repo root |
 | SECURITY.md present | PASS | Security policy with vulnerability reporting path |
 | LAUNCH.md present | PASS | Launch readiness snapshot |

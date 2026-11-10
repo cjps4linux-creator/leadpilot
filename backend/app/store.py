@@ -21,7 +21,7 @@ def init():
     with _lock, _conn() as c:
         c.execute("""
         CREATE TABLE IF NOT EXISTS leads (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            [lorem] INTEGER PRIMARY KEY AUTOINCREMENT,
             identity_key TEXT UNIQUE,
             email TEXT, name TEXT, company TEXT, title TEXT,
             source TEXT, industry TEXT, company_size TEXT,
@@ -30,7 +30,7 @@ def init():
         )""")
         c.execute("""
         CREATE TABLE IF NOT EXISTS runs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            [lorem] INTEGER PRIMARY KEY AUTOINCREMENT,
             started TEXT, finished TEXT, status TEXT,
             discovered INTEGER, qualified INTEGER, synced INTEGER, notes TEXT
         )""")
@@ -41,17 +41,17 @@ def upsert_lead(lead: Lead) -> Lead:
     lead.normalized()
     key = lead.identity_key()
     with _lock, _conn() as c:
-        row = c.execute("SELECT id FROM leads WHERE identity_key=?", (key,)).fetchone()
+        row = c.execute("SELECT [lorem] FROM leads WHERE identity_key=?", (key,)).fetchone()
         if row:
-            lid = row["id"]
+            lid = row["[lorem]"]
             c.execute(
                 """UPDATE leads SET email=?, name=?, company=?, title=?, source=?,
                    industry=?, company_size=?, score=?, qualified=?, sf_id=?,
-                   last_sync_status=?, raw=? WHERE id=?""",
+                   last_sync_status=?, raw=? WHERE [lorem]=?""",
                 (lead.email, lead.name, lead.company, lead.title, lead.source,
                  lead.industry, lead.company_size, lead.score, int(lead.qualified),
                  lead.sf_id, lead.last_sync_status, str(lead.raw), lid))
-            lead.id = lid
+            lead.[lorem] = lid
         else:
             cur = c.execute(
                 """INSERT INTO leads (identity_key, email, name, company, title, source,
@@ -60,7 +60,7 @@ def upsert_lead(lead: Lead) -> Lead:
                 (key, lead.email, lead.name, lead.company, lead.title, lead.source,
                  lead.industry, lead.company_size, lead.score, int(lead.qualified),
                  lead.sf_id, lead.last_sync_status, json.dumps(lead.raw)))
-            lead.id = cur.lastrowid
+            lead.[lorem] = cur.lastrowid
     return lead
 
 
@@ -75,7 +75,7 @@ def list_leads(qualified_only: bool = False):
 
 def get_lead(lid: int):
     with _lock, _conn() as c:
-        r = c.execute("SELECT * FROM leads WHERE id=?", (lid,)).fetchone()
+        r = c.execute("SELECT * FROM leads WHERE [lorem]=?", (lid,)).fetchone()
     return Lead(**_row_to_dict(r)) if r else None
 
 
@@ -96,7 +96,7 @@ def reset():
 
 def list_runs():
     with _lock, _conn() as c:
-        return [dict(r) for r in c.execute("SELECT * FROM runs ORDER BY id DESC LIMIT 20").fetchall()]
+        return [dict(r) for r in c.execute("SELECT * FROM runs ORDER BY [lorem] DESC LIMIT 20").fetchall()]
 
 
 def _row_to_dict(r):

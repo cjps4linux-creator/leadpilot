@@ -1,6 +1,6 @@
 # leadpilot
 
-AI lead discovery, enrichment, scoring, and CRM sync — demonstrates the full data pipeline from raw lead sources through qualification, deduplication, and idempotent Salesforce integration. Runs headless at zero cloud spend with mock mode.
+AI lead discovery, enrichment, scoring, and CRM sync  -  demonstrates the full data pipeline from raw lead sources through qualification, deduplication, and idempotent Salesforce integration. Runs headless at zero cloud spend with mock mode.
 
 Built by Conrad CJ Wilson.
 
@@ -104,7 +104,7 @@ Set the following environment variables:
 ### Run
 
 ```bash
-# Mock mode (default — no external APIs required)
+# Mock mode (default  -  no external APIs required)
 cd backend
 python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
@@ -162,7 +162,7 @@ Functional prototype with complete pipeline architecture, mock adapters, idempot
 
 ## License
 
-MIT — use, modify, and ship freely.
+MIT  -  use, modify, and ship freely.
 
 **Author:** Conrad CJ Wilson
 **GitHub:** https://github.com/cjps4linux-creator
