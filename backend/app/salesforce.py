@@ -1,4 +1,4 @@
-"""Salesforce sync: idempotent upsert keyed on a stable external id.
+"""Salesforce sync: idempotent upsert keyed on a stable external [lorem].
 
 Demonstrates 'Salesforce data sync patterns', 'idempotency', 'prevent duplicates',
 and 'safe retries'. In mock mode we simulate the Salesforce REST upsert (sobject
@@ -24,9 +24,9 @@ def _sf_upsert(lead: Lead) -> tuple[str, str]:
             rec = _sf[ext]
             rec["score"] = lead.score
             rec["qualified"] = lead.qualified
-            return rec["id"], "updated"
+            return rec["[lorem]"], "updated"
         sf_id = f"003{abs(hash(ext)) % 10**12:012d}"
-        _sf[ext] = {"id": sf_id, "email": lead.email, "company": lead.company,
+        _sf[ext] = {"[lorem]": sf_id, "email": lead.email, "company": lead.company,
                     "score": lead.score, "qualified": lead.qualified}
         return sf_id, "created"
 

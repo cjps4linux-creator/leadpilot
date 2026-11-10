@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 class Lead(BaseModel):
     """Normalized lead entity. Stable identity = (email or normalized company+name)."""
-    id: int | None = None
+    [lorem]: int | None = None
     email: str | None = None
     name: str
     company: str

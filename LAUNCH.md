@@ -1,4 +1,4 @@
-# leadpilot — Launch Readiness
+# leadpilot  -  Launch Readiness
 
 **Date:** 2026-08-27
 **Owner:** Conrad CJ Wilson
@@ -15,7 +15,7 @@
 | Tests passing | Pending | pytest fixtures in `backend/tests/` |
 | Security scan | Pending | SECURITY.md in place |
 | README complete | Complete | Architecture, pipeline stages, ADRs, honest limitations |
-| LICENSE | Complete | MIT — Conrad CJ Wilson |
+| LICENSE | Complete | MIT  -  Conrad CJ Wilson |
 | Docker build | Complete | Dockerfile + docker-compose.yml present |
 | Documentation | Complete | API endpoints, configuration table, architecture diagram |
 
@@ -50,4 +50,4 @@
 
 ## Contact
 
-Conrad CJ Wilson — conradcjwilson0@gmail.com
+Conrad CJ Wilson  -  conradcjwilson0@gmail.com
